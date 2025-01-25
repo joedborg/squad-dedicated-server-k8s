@@ -3,5 +3,4 @@ resources:
   - deployment.yaml
   - namespace.yaml
   - persistent-volume-claim.yaml
-  - persistent-volume.yaml
   - service.yaml

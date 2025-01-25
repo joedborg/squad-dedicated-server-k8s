@@ -9,12 +9,16 @@ spec:
     - port: 7787
       targetPort: 7787
       protocol: UDP
+      name: game
     - port: 27165
       targetPort: 27165
       protocol: UDP
+      name: query
     - port: 15000
       targetPort: 15000
       protocol: UDP
+      name: beacon
     - port: 21114
       targetPort: 21114
       protocol: UDP
+      name: rcon

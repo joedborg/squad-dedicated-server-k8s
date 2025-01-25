@@ -10,5 +10,11 @@ spec:
           env:
             - name: SERVER_NAME
               value: "An example of a Squad Dedicated Server"
+            - name: MODS
+              value: "(100000 1000001)"
             - name: FIXEDMAXPLAYERS
-              value: "99"
+              value: "80"
+            - name: FIXEDMAXTICKRATE
+              value: "60"
+            - name: RANDOM
+              value: "FIRST"

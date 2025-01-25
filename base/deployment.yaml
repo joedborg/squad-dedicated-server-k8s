@@ -21,6 +21,22 @@ spec:
       containers:
         - name: squad-dedicated-server
           image: cm2network/squad:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "4Gi"
+              cpu: "1"
+            limits:
+              memory: "4Gi"
+              cpu: "1"
+          readinessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - test -f /home/steam/squad-dedicated/SquadGame/Saved/Logs/SquadGame.log
+            initialDelaySeconds: 5
+            periodSeconds: 60
           ports:
             - containerPort: 7787
               protocol: UDP
@@ -33,6 +49,8 @@ spec:
           env:
             - name: SERVER_NAME
               value: "Squad Dedicated Server"
+            - name: MODS
+              value: "()"
             - name: PORT
               value: "7787"
             - name: QUERYPORT
@@ -43,6 +61,10 @@ spec:
               value: "21114"
             - name: FIXEDMAXPLAYERS
               value: "100"
+            - name: FIXEDMAXTICKRATE
+              value: "50"
+            - name: RANDOM
+              value: "ALWAYS"
           volumeMounts:
             - mountPath: /home/steam/squad-dedicated/
               name: squad-dedicated-server-data
