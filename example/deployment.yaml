@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: squad-dedicated-server
+spec:
+  template:
+    spec:
+      containers:
+        - name: squad-dedicated-server
+          env:
+            - name: SERVER_NAME
+              value: "An example of a Squad Dedicated Server"
+            - name: FIXEDMAXPLAYERS
+              value: "99"

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: squad-dedicated-server
+  labels:
+    app: squad-dedicated-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: squad-dedicated-server
+  template:
+    metadata:
+      labels:
+        app: squad-dedicated-server
+    spec:
+      volumes:
+        - name: squad-dedicated-server-data
+          persistentVolumeClaim:
+            claimName: squad-dedicated-server-pvc
+      containers:
+        - name: squad-dedicated-server
+          image: cm2network/squad:latest
+          ports:
+            - containerPort: 7787
+              protocol: UDP
+            - containerPort: 27165
+              protocol: UDP
+            - containerPort: 15000
+              protocol: UDP
+            - containerPort: 21114
+              protocol: UDP
+          env:
+            - name: SERVER_NAME
+              value: "Squad Dedicated Server"
+            - name: PORT
+              value: "7787"
+            - name: QUERYPORT
+              value: "27165"
+            - name: BEACONPORT
+              value: "15000"
+            - name: RCONPORT
+              value: "21114"
+            - name: FIXEDMAXPLAYERS
+              value: "100"
+          volumeMounts:
+            - mountPath: /home/steam/squad-dedicated/
+              name: squad-dedicated-server-data

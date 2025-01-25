@@ -1,0 +1,1 @@
+# Squad Decicated Server on Kubernetes
